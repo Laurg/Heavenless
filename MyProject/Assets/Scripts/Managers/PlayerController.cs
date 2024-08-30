@@ -8,6 +8,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 
 {
+    #region
+    public static Transform instance;
+
+    /*private void Awake()
+    {
+        instance = this.transform;
+    }*/
+    #endregion
     private Vector2 _input;
     private CharacterController _characterController;
     private Vector3 _direction;
@@ -34,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this.transform;
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -46,7 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         
         _input = context.ReadValue<Vector2>();
-        _direction = new Vector3(_input.x, 0.0f,_input.y);
+        _direction = new Vector3(_input.x, -1.0f,_input.y);
     }
 
     public void RotateCamera()
@@ -64,11 +73,6 @@ public class PlayerController : MonoBehaviour
             // Make the transform look in the direction.
             transform.forward = direction;
         }
-        /*_mousePosition = Mouse.current.position.ReadValue();
-        _mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(_mousePosition.x, _mousePosition.y, Camera.main.transform.position.y));
-        _characterDirection = new Vector3(_mousePosition.x - transform.position.x, 0.0f, _mousePosition.z - transform.position.z);
-        transform.forward = _characterDirection;*/
-
     }
 
 
@@ -82,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Dash()
     {
-        Debug.Log("entró por aquí");
         _canDash = false;
         _isDashing = true;
         _characterController.Move(_direction * _dashingPower * Time.deltaTime);
