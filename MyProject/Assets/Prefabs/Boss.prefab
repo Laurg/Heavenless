@@ -127,6 +127,8 @@ MonoBehaviour:
   damage: 0
   attackSpeed: 0
   canAttack: 0
+  EnemyType: {fileID: 7257934102286090371}
+  Boss: {fileID: 7257934102286090371}
 --- !u!114 &6771696272065616400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +149,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6899881550950940767}
     m_Modifications:
+    - target: {fileID: 3254817030537133231, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87262b6fc4a2998478232cf60dd86d86, type: 2}
     - target: {fileID: 8094233446992353698, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
       propertyPath: m_Name
       value: Demon

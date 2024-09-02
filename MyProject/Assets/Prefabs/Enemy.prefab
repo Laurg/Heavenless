@@ -127,6 +127,8 @@ MonoBehaviour:
   damage: 0
   attackSpeed: 0
   canAttack: 0
+  EnemyType: {fileID: 7257934102286090371}
+  Boss: {fileID: 7257934102286090371, guid: cb212a7c103741f44a7f56f24a8e84b8, type: 3}
 --- !u!114 &6771696272065616400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f48c01f1b02c00418fbbc73b2d55d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1001 &489189786929255024
 PrefabInstance:
   m_ObjectHideFlags: 0
