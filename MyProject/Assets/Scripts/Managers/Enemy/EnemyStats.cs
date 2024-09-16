@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyStats : Character_Stats
 {
-    [SerializeField] private float damage;
     [SerializeField] private float attackSpeed;
     [SerializeField] private bool canAttack;
     [SerializeField] public GameObject EnemyType;
@@ -13,6 +12,7 @@ public class EnemyStats : Character_Stats
     private void Start()
     {
         InitVariables();
+        healthbar.SetHealth(health);
     }
 
     public void DealDamage()
@@ -20,11 +20,6 @@ public class EnemyStats : Character_Stats
         // Damaging functionality
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        health -= 10;
-        SetHealthTo(health);
-    }
     public override void Die()
     {
         base.Die();
@@ -40,13 +35,13 @@ public class EnemyStats : Character_Stats
             SetHealthTo(maxHealth);
             isDead = false;
 
-            damage = 10;
+            damage = 20;
             attackSpeed = 1.5f;
             canAttack = true;
         }
         else
         {
-            maxHealth = 30;
+            maxHealth = 50;
             SetHealthTo(maxHealth);
             isDead = false;
 

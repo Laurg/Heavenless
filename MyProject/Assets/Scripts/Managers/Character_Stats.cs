@@ -6,12 +6,16 @@ public class Character_Stats : MonoBehaviour
 {
     [SerializeField] protected int health;
     [SerializeField] protected int maxHealth;
-
+    [SerializeField] protected int damage = 10;
     [SerializeField] protected bool isDead;
 
+    public Healthbar healthbar;
     private void Start()
     {
+
         InitVariables();
+        health = maxHealth;
+        healthbar.SetMaxHealth (health);
     }
 
     public virtual void CheckHealth()
@@ -42,10 +46,20 @@ public class Character_Stats : MonoBehaviour
         CheckHealth();
     }
 
-    public void TakeDamage(int damage)
+    public void OnCollisionEnter(Collision collision)
     {
-        int healthAfterDamage = health - damage;
+        //if (collision.gameObject.CompareTag("Enemy"))
+       // {
+            TakeDamage(damage);
+        //}
+    }
+
+    // Método para recibir daño
+    public void TakeDamage(int amount)
+    {
+        int healthAfterDamage = health - amount;
         SetHealthTo(healthAfterDamage);
+        healthbar.SetHealth(health); 
     }
 
     public void Heal(int heal)
