@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character_Stats : MonoBehaviour
 {
@@ -34,11 +35,13 @@ public class Character_Stats : MonoBehaviour
     public virtual void Die()
     {
         isDead = true;
+        SceneManager.LoadScene(2);
     }
 
     public bool IsDead()
-    { 
-        return isDead; 
+    {
+
+        return isDead;
     }  
     public void SetHealthTo(int healthToSetTo)
     {
