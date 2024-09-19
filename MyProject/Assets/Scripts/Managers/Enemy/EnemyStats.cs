@@ -35,8 +35,9 @@ public class EnemyStats : Character_Stats
             Debug.Log("Colisión ignorada con: " + collision.gameObject.name);
             return;
         }
-        else { 
-        base.OnCollisionEnter(collision);
+        else
+        {
+            base.OnCollisionEnter(collision);
         }
     }
     public override void InitVariables()

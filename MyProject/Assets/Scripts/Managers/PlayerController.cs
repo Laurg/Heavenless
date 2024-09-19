@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
     private bool _isDashing;
     private Camera mainCamera;
+    private Animator animator;
 
     [SerializeField] private float _dashingPower;
     [SerializeField] private float _dashingTime;
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     {
         // Cache the camera, Camera.main is an expensive operation.
         mainCamera = Camera.main;
+        animator = GetComponent<Animator>();
+       animator.SetBool("IsMoving", false);
     }
 
     private void Awake()
@@ -50,12 +53,29 @@ public class PlayerController : MonoBehaviour
     {
         _characterController.Move(_direction* _speed *Time.deltaTime);
         RotateCamera();
+        UpdateAnimation();
     }
+
+    private void UpdateAnimation()
+    {
+        bool isMoving = _input.sqrMagnitude > 0 || _direction.sqrMagnitude > 0;
+        animator.SetBool("IsMoving", isMoving);
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
-        
-        _input = context.ReadValue<Vector2>();
-        _direction = new Vector3(_input.x, -1.0f,_input.y);
+        if (context.performed)
+        {
+            animator.SetBool("IsMoving", true);
+            _input = context.ReadValue<Vector2>();
+            _direction = new Vector3(_input.x, -1.0f, _input.y);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+            _input = Vector2.zero;
+            _direction = Vector3.zero;
+        }
     }
 
     public void RotateCamera()
@@ -63,14 +83,13 @@ public class PlayerController : MonoBehaviour
         var (success, position) = GetMousePosition();
         if (success)
         {
-            // Calculate the direction
+            
             var direction = position - transform.position;
 
-            // You might want to delete this line.
-            // Ignore the height difference.
+            
             direction.y = 0;
 
-            // Make the transform look in the direction.
+            
             transform.forward = direction;
         }
     }

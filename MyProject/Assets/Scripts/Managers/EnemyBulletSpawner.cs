@@ -34,14 +34,25 @@ public class EnemyBulletSpawner : MonoBehaviour
     {
         if (enemyBullet)  // Asegúrate de que el prefab de la bala esté asignado
         {
-            // Instancia una nueva bala en la posición y rotación del spawner
-            GameObject spawnedBullet = Instantiate(enemyBullet, transform.position, transform.rotation);
+            int bulletCount = 5;  // Número de balas en el abanico
+            float angleStep = 10f;  // Separación en grados entre cada bala
+            float initialAngle = -(angleStep * (bulletCount - 1)) / 2;  // Ángulo inicial para centrar el abanico
 
-            // Configura la velocidad de la bala
-            EnemyBullet bulletScript = spawnedBullet.GetComponent<EnemyBullet>();
-            if (bulletScript != null)
+            for (int i = 0; i < bulletCount; i++)
             {
-                bulletScript.speed = speed;
+                // Calcula el ángulo de disparo para cada bala
+                float currentAngle = initialAngle + (i * angleStep);
+                Quaternion rotation = Quaternion.Euler(0f, currentAngle, 0f);  // Rotación en Y
+
+                // Instancia una nueva bala en la posición y rotación del spawner
+                GameObject spawnedBullet = Instantiate(enemyBullet, transform.position, transform.rotation * rotation);
+
+                // Configura la velocidad de la bala
+                EnemyBullet bulletScript = spawnedBullet.GetComponent<EnemyBullet>();
+                if (bulletScript != null)
+                {
+                    bulletScript.speed = speed;
+                }
             }
         }
     }

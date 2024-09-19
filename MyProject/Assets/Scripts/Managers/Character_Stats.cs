@@ -49,7 +49,7 @@ public class Character_Stats : MonoBehaviour
         CheckHealth();
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         //if (collision.gameObject.CompareTag("Enemy"))
        // {

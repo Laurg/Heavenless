@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6262659339009397774}
   - component: {fileID: 6894431761017168561}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: EnemyBulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce0d9b9308ff06479add45f3958ac73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 0}
+  enemyBullet: {fileID: 3298383450122052308, guid: f93cefac6eb8d2b45bd30dd2fb7152cd, type: 3}
   speed: 1
   fireRate: 0.5
   spawnerType: 0
