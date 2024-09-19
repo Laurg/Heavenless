@@ -8,6 +8,7 @@ public class EnemyStats : Character_Stats
     [SerializeField] private bool canAttack;
     [SerializeField] public GameObject EnemyType;
     [SerializeField] public GameObject Boss;
+    public string tagToIgnore = "enemyBullet";
 
     private void Start()
     {
@@ -22,10 +23,22 @@ public class EnemyStats : Character_Stats
 
     public override void Die()
     {
-        base.Die();
+        isDead = true;
         Destroy(gameObject);
     }
 
+    public override void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag(tagToIgnore))
+        {
+            Debug.Log("Colisión ignorada con: " + collision.gameObject.name);
+            return;
+        }
+        else { 
+        base.OnCollisionEnter(collision);
+        }
+    }
     public override void InitVariables()
     {
         
